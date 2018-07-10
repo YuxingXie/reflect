@@ -24,3 +24,39 @@ note:补一下基础，并深入研究一下，特别是泛型。参考书籍：
 
     note:为了让容器灵活的持有各种类型,这是一个泛型出现的重要原因。
     
+糟糕容器：
+com.lingyun.generics.BadHolder
+```java
+public class BadHolder1 {
+    private Automobile a;
+    public BadHolder1(Automobile a){
+        this.a=a;
+    }
+
+    public Automobile get() {
+        return a;
+    }
+}
+```
+为什么它是一个糟糕的容器？作为一个容器，它应该容纳万物，它仅关心容器本身就好，比如是否能重复元素，是否排序，
+如何取得元素等等。而这个容器只能容纳Automobile类型及Automobile扩展。
+
+糟糕的解决方案：Automobile类型变为Object类型似乎可以解决容纳一切的问题，可以存放Automobile、String等等一切，
+但它的糟糕之处在哪里呢？
+
+com.lingyun.generics.BadHolder2
+
+```java
+public class BadHolder2 {
+    private Object a;
+    public BadHolder2(Object a){
+        this.a=a;
+    }
+
+    public Object get() {
+        return a;
+    }
+}
+
+```
+不难想像，当我们调用get方法时，我们获得的是一个Object，必定存在强制类型转换。
