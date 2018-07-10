@@ -68,3 +68,24 @@ note:这里需要区分一下泛型程序的设计者和使用者不同角色，
     
 因此，与其使用Object，我们更喜欢暂时不指定类型，而是稍后再决定具体使用什么类型。要达到这个目的，需要使用类型参数，
 用尖括号扩住，放在类名后面。然后在使用这个类的时候，再用实际的类型替换此类型参数。 ------《Java编程思想》    
+
+com.lingyun.generics.GoodHolder
+```java
+public class GoodHolder<T> {
+    private T a;
+    public GoodHolder(T a){
+        this.a=a;
+    }
+
+    public T get() {
+        return a;
+    }
+
+    public void set(T a) {
+        this.a = a;
+    }
+    public static void main(String[] args){
+        GoodHolder<Automobile> holder=new GoodHolder<Automobile>(()->{});
+    }
+}
+```
