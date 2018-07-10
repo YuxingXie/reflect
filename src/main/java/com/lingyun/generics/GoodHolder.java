@@ -14,6 +14,9 @@ public class GoodHolder<T> {
         this.a = a;
     }
     public static void main(String[] args){
+
         GoodHolder<Automobile> holder=new GoodHolder<Automobile>(()->{});
+
+        holder.get().run();
     }
 }
