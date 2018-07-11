@@ -92,3 +92,9 @@ public class GoodHolder<T> {
     }
 }
 ```
+```text
+note:上例中main方法使用了lambda表达式表示一个匿名内部类。因为Automobile是一个接口类型，实例化GoodHolder<Automobile>
+的时候需要具体类型。可见泛型的参数化类型使用接口也是符合语法规范的。
+
+另外，我们使用get方法，直接获取了Automobile类型实例，可直接调用run方法。从而避免了Object类型的强制类型转换。
+```
