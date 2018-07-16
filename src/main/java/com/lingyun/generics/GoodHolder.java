@@ -24,5 +24,9 @@ public class GoodHolder<T> {
         GoodHolder<Automobile> carHolder=new GoodHolder<>(new Car());
 
         carHolder.get().run();
+
+        Car car=new Car();
+
+        GoodHolder<AbstractAutomobile> carHolder2=new GoodHolder<>(car);
     }
 }
