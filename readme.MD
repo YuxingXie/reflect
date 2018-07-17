@@ -194,4 +194,13 @@ private Object a这样的类属性。
     Automobile car=carHolder.get();
     car.run();
 ```
-* 第一句
+* 第一句代码在虚拟机中实际上是实例化了一个GoodHolder普通类，构造方法传入的Car实例，被赋值给Object类型的类属性a。
+
+* 第二句代码carHolder.get()方法的原始类型实际是返回一个Obejct对象，在代码调用处，编译器悄悄把代码变成了
+```java
+    Automobile car=(Automobile)carHolder.get();
+```
+它是根据我们定义的泛型类型实例GoodHolder<Automobile>中的类型参数Automobile来强转的。当然，我们定义为GoodHolder<Car>代码也是正确的，
+这个自己想想就能明白。
+
+* 第三句，既然现在car是一个Automobile,当然可以执行Automobile的run方法了，而且是执行的Car的run方法，因为它的实际类型是Car。
