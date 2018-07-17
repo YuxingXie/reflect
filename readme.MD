@@ -200,7 +200,7 @@ private Object a这样的类属性。
 ```java
     Automobile car=(Automobile)carHolder.get();
 ```
-它是根据我们定义的泛型类型实例GoodHolder&lt;Automobile&gt;中的类型参数Automobile来强转的。当然，我们定义为GoodHolder<Car>代码也是正确的，
+它是根据我们定义的泛型类型实例GoodHolder&lt;Automobile&gt;中的类型参数Automobile来强转的。当然，我们定义为GoodHolder&lt;Car&gt;代码也是正确的，
 这个自己想想就能明白。
 
 * 第三句，既然现在car是一个Automobile,当然可以执行Automobile的run方法了，而且是执行的Car的run方法，因为它的实际类型是Car。
