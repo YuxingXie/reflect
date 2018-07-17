@@ -6,6 +6,9 @@ public class ArrayAlg {
     }
 
     public static void main(String[] args){
-        String middle =ArrayAlg.<String>getMiddle("John","Q","Public");
+        String middle =ArrayAlg.<String>getMiddle("John","Q.","Public");
+        String middle2 =ArrayAlg.getMiddle("John","Q.","Public");
+//        double d1=ArrayAlg.getMiddle(3.14,1729,0);
+        double d2 =ArrayAlg.getMiddle(3.14d,1729d,0d);
     }
 }

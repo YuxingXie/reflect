@@ -112,11 +112,23 @@ public class ArrayAlg {
     } 
 }
 ```
-```text
-note:类型变量放在返回值之前，修饰符之后。
-```
 
 方法调用：
 ```java
-    String middle =ArrayAlg.<String>getMiddle("John","Q","Public");
+    String middle =ArrayAlg.<String>getMiddle("John","Q.","Public");
+    String middle2 =ArrayAlg.getMiddle("John","Q.","Public");
 ```
+
+```text
+note:定义方法时类型变量放在返回值之前，修饰符之后。调用泛型方法时，在方法名前放类型参数，或者可以省略，因为编译器可以推断出来。
+上例中，方法传入了String[]，编译器判断T实际为String。
+```
+偶尔出现的错误：
+```java
+    double d1 =ArrayAlg.getMiddle(3.14,1729,0);//wrong
+    double d2 =ArrayAlg.getMiddle(3.14d,1729d,0d);//correct
+```
+d1报错信息：
+![](https://github.com/YuxingXie/reflect/raw/master/source/1.png) 
+
+
