@@ -129,6 +129,7 @@ note:定义方法时类型变量放在返回值之前，修饰符之后。调用
     double d2 =ArrayAlg.getMiddle(3.14d,1729d,0d);//correct
 ```
 d1报错信息：
+
 ![](https://github.com/YuxingXie/reflect/raw/master/source/1.png) 
 
 
