@@ -151,5 +151,20 @@ d1报错信息：
     Number d3=ArrayAlg.getMiddle(3.14,1729,0);
     Comparable d4=ArrayAlg.getMiddle(3.14,1729,0);
 ```
-
+#### 类型变量的限定
+```java
+public class ArrayAlg {
+    public static<T> T getMiddle(T...a){
+        return a[a.length/2];
+    }
+    public static<T> T min(T[] a){
+        if (a==null ||a.length==0) return null;
+        T smallest=a[0];
+        for(int i=0;i<a.length;i++){
+            if (smallest.compareTo(a[i])>0) smallest=a[i];//在这里报错了，谁也不能保证传进来的参数可以调用compareTo方法
+        }
+        return smallest;
+    }
+}
+```
 
