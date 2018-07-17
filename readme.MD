@@ -208,3 +208,17 @@ private Object a这样的类属性。
 #### 擦除带来的两个复杂问题
 
 《Java核心技术 卷I》中引入了这个有点点复杂的问题，现在我来分析一下这个问题。
+
+```java
+package com.lingyun.generics;
+
+import java.util.Date;
+
+public class DateInterval extends Pair<Date>{
+    public void setSecond(Date second){
+        if(second.compareTo(getFirst())>0){
+            super.setSecond(second);
+        }
+    }
+}
+```
