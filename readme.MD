@@ -179,7 +179,7 @@ Comparable是一个接口，为什么关键字不是implements而是extends呢�
 
 虚拟机没有泛型类型对象。就是说编译后的泛型类，在虚拟机中只是一个普通类。所以我们有必要了解一下，编译器是如何把泛型类编译为普通类的。
 
-我们定义一个泛型类以后，都自动提供了一个相应的原始类型(raw type)。它删去了类型参数，替换为限定类型或Object。
+我们定义一个泛型类以后，都自动提供了一个相应的原始类型(raw type)。它删去了类型参数，替换为限定类型或Object。这个过程叫擦除。
 
 所以在虚拟机中，只存在public static Comparable min(Comparable[] a)这类方法。com.lingyun.generics.GoodHolder也只存在
 private Object a这样的类属性。
@@ -204,3 +204,5 @@ private Object a这样的类属性。
 这个自己想想就能明白。
 
 * 第三句，既然现在car是一个Automobile,当然可以执行Automobile的run方法了，而且是执行的Car的run方法，因为它的实际类型是Car。
+
+#### 擦除带来的两个复杂问题
