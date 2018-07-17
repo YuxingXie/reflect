@@ -152,11 +152,10 @@ d1报错信息：
     Comparable d4=ArrayAlg.getMiddle(3.14,1729,0);
 ```
 #### 类型变量的限定
+
+看下面的代码，求泛型数组的最小值：
 ```java
 public class ArrayAlg {
-    public static<T> T getMiddle(T...a){
-        return a[a.length/2];
-    }
     public static<T> T min(T[] a){
         if (a==null ||a.length==0) return null;
         T smallest=a[0];
@@ -167,4 +166,9 @@ public class ArrayAlg {
     }
 }
 ```
+将类型变量设置限定(bound)即可实现：
+```java
+    public static<T extends Comparable> T min(T[] a)...
+```
+Comparable是一个接口，为什么关键字不是implements而是extends呢？这是规定，类型变量限定时，无论是继承父类或实现接口都用关键字extends。
 
