@@ -148,8 +148,8 @@ d1报错信息：
 
 所以下面的代码是正确的：
 ```java
-        Number d3=ArrayAlg.getMiddle(3.14,1729,0);
-        Comparable d4=ArrayAlg.getMiddle(3.14,1729,0);
+    Number d3=ArrayAlg.getMiddle(3.14,1729,0);
+    Comparable d4=ArrayAlg.getMiddle(3.14,1729,0);
 ```
 
 
