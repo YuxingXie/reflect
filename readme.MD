@@ -18,7 +18,7 @@ note:补一下基础，并深入研究一下，特别是泛型。反射主要研
     的方式和普通方法和类有些差别的。简言之，就是可以定义这么一个类或方法，让它接受一个不知道是什么类型的参数
     (当然不会是Object类型这么简单的方式)。
 ```
-#### 简单泛型
+#### 简单泛型类
 
 有许多原因促成了泛型的出现，而最引人注目的一个原因，就是为了创造<b>容器类</b>。 ---《Java编程思想》
 
@@ -100,3 +100,23 @@ note:上例中main方法使用了lambda表达式表示一个匿名内部类。�
 同时也证明了，类型参数也存在多态特性。
 ```
 
+#### 泛型方法
+
+实际上，可以定义一个带有类型参数的简单方法：
+```java
+package com.lingyun.generics;
+
+public class ArrayAlg {
+    public static<T> T getMiddle(T...a){
+        return a[a.length/2];
+    } 
+}
+```
+```text
+note:类型变量放在返回值之前，修饰符之后。
+```
+
+方法调用：
+```java
+    String middle =ArrayAlg.<String>getMiddle("John","Q","Public");
+```
