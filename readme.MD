@@ -108,7 +108,7 @@ Type argument can not be primitive type.
 ```java
     GoodHolder<int> intHolder=new GoodHolder<int>();
 ```
-所以基本数据类型不可作为泛型类型参数。
+所以基本数据类型不可作为泛型类型参数。在认知不够充分的情况下，我决定暂且不追究原因，把这当成一条规则就好。
 
 
 #### 泛型方法
@@ -143,6 +143,13 @@ d1报错信息：
 
 ![](https://github.com/YuxingXie/reflect/raw/master/source/1.png) 
 
-原因：因为方法调用时需要传入一个某种类型的数组，3.14是double型，1729和0是int型，传入后编译器自动装箱为Double和Integer，
+原因：因为方法调用时需要传入一个某种类型的数组，3.14是double型，1729和0是int型，前面研究过基本数据类型不可作为类型参数，传入后编译器自动装箱为Double和Integer，
+但既然他们必须是同一种类型，编译器寻找他们的共同父类或接口，找到了Number和Comparable接口，他们不可赋值为double。
+
+所以下面的代码是正确的：
+```java
+        Number d3=ArrayAlg.getMiddle(3.14,1729,0);
+        Comparable d4=ArrayAlg.getMiddle(3.14,1729,0);
+```
 
 

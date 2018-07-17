@@ -10,5 +10,7 @@ public class ArrayAlg {
         String middle2 =ArrayAlg.getMiddle("John","Q.","Public");
 //        double d1=ArrayAlg.getMiddle(3.14,1729,0);
         double d2 =ArrayAlg.getMiddle(3.14d,1729d,0d);
+        Number d3=ArrayAlg.getMiddle(3.14,1729,0);
+        Comparable d4=ArrayAlg.getMiddle(3.14,1729,0);
     }
 }
