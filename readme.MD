@@ -99,6 +99,17 @@ note:上例中main方法使用了lambda表达式表示一个匿名内部类。�
 另外，我们使用get方法，直接获取了Automobile类型实例，可直接调用run方法。从而避免了Object类型的强制类型转换。
 同时也证明了，类型参数也存在多态特性。
 ```
+##### 基本数据类型可以作为类型参数吗？
+
+下面的代码是报错的：
+```text
+Type argument can not be primitive type.
+```
+```java
+    GoodHolder<int> intHolder=new GoodHolder<int>();
+```
+所以基本数据类型不可作为泛型类型参数。
+
 
 #### 泛型方法
 
@@ -131,5 +142,7 @@ note:定义方法时类型变量放在返回值之前，修饰符之后。调用
 d1报错信息：
 
 ![](https://github.com/YuxingXie/reflect/raw/master/source/1.png) 
+
+原因：因为方法调用时需要传入一个某种类型的数组，3.14是double型，1729和0是int型，传入后编译器自动装箱为Double和Integer，
 
 
