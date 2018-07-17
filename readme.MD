@@ -172,3 +172,6 @@ public class ArrayAlg {
 ```
 Comparable是一个接口，为什么关键字不是implements而是extends呢？这是规定，类型变量限定时，无论是继承父类或实现接口都用关键字extends。
 
+类型变量可以限定多个接口，如T extends Comparable&Serializable，这要求实例化参数类型时，实例参数必须同时实现这2个接口。但是
+限定中至多有一个类(class),而且类必须是限定类型列表中的第一个。
+
