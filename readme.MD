@@ -206,3 +206,5 @@ private Object a这样的类属性。
 * 第三句，既然现在car是一个Automobile,当然可以执行Automobile的run方法了，而且是执行的Car的run方法，因为它的实际类型是Car。
 
 #### 擦除带来的两个复杂问题
+
+《Java核心技术 卷I》中引入了这个有点点复杂的问题，现在我来分析一下这个问题。
