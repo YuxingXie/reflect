@@ -15,18 +15,18 @@ public class GoodHolder<T> {
     }
     public static void main(String[] args){
 
-        GoodHolder<Automobile> holder=new GoodHolder<Automobile>(()->{
+        GoodHolder<Automobile> holder=new GoodHolder<>(()->{
             System.out.println("Automobile run");
         });
 
         holder.get().run();
 
         GoodHolder<Automobile> carHolder=new GoodHolder<>(new Car());
+        Automobile car=carHolder.get();
+        car.run();
 
-        carHolder.get().run();
+        Car car2=new Car();
 
-        Car car=new Car();
-
-        GoodHolder<AbstractAutomobile> carHolder2=new GoodHolder<>(car);
+        GoodHolder<AbstractAutomobile> carHolder2=new GoodHolder<>(car2);
     }
 }

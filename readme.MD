@@ -175,3 +175,23 @@ Comparable是一个接口，为什么关键字不是implements而是extends呢�
 类型变量可以限定多个接口，如T extends Comparable&Serializable，这要求实例化参数类型时，实例参数必须同时实现这2个接口。但是
 限定中至多有一个类(class),而且类必须是限定类型列表中的第一个。
 
+#### 泛型代码和虚拟机
+
+虚拟机没有泛型类型对象。就是说编译后的泛型类，在虚拟机中只是一个普通类。所以我们有必要了解一下，编译器是如何把泛型类编译为普通类的。
+
+我们定义一个泛型类以后，都自动提供了一个相应的原始类型(raw type)。它删去了类型参数，替换为限定类型或Object。
+
+所以在虚拟机中，只存在public static Comparable min(Comparable[] a)这类方法。com.lingyun.generics.GoodHolder也只存在
+private Object a这样的类属性。
+
+##### 翻译泛型表达式
+
+我们调用泛型方法或实例化泛型类时，其实是编译器帮我们做了强制类型转换。
+
+我们分析一下GoodHolder类中的代码：
+```java
+    GoodHolder<Automobile> carHolder=new GoodHolder<>(new Car());
+    Automobile car=carHolder.get();
+    car.run();
+```
+* 第一句
