@@ -302,6 +302,8 @@ public class Interval<Q extends Comparable,S> extends Pair<Q>{
  
  note:非弄懂不可。。。非弄懂不可。。。非弄懂不可。。。
  
+ 《Java核心技术 卷I》中，作者试图证明：无论S与T有什么关系，Pair&lt;S&gt;和Pair&lt;T&gt;没有说明关系。
+ 
  很神奇的是，书中认为的会编译报错的代码，在我这里却编译通过了。见我写的Pair类中的main方法。
  
  但是作者的结论是正确的，确实Pair&lt;Manager&gt;和Pair&lt;Employee&gt;没有父子关系。下图可以证明：
@@ -310,5 +312,5 @@ public class Interval<Q extends Comparable,S> extends Pair<Q>{
  
  其实作者是想当然了，根据虚拟机悄悄修改我们的代码过程，Pair&lt;Employee&gt; result=ArrayAlg.minMax(topHonchos);这句代码调用时，topHonchos已被强制转换为了Employee[],所以代码是正确的。
  
- 
+
  
