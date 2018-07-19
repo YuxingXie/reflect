@@ -245,4 +245,4 @@ public void setSecond(Object second)中调用public void setSecond(Date second)�
 
 当虚拟机解决getter方法的泛型类型时，Pair中定义public T getSecond()被擦除变量类型后public Object getSecond(),DateInterval中的
 public Date getSecond()方法与Pair中的public Object getSecond()被称作具有协变的返回类型，是一种合法的重写。这个可以看看com.lingyun.generics.Car是如何重写
-com.lingyun.generics.AbstractAutomobile的doSomething方法的。
+com.lingyun.generics.AbstractAutomobile的doSomething方法的。注意，只有协变的返回类型而没有协变的参数类型。

@@ -8,7 +8,7 @@ public abstract class AbstractAutomobile implements Automobile {
         System.out.println("automobile run");
     }
 
-    public Serializable doSomething(){
+    public Serializable doSomething(Serializable doing){
         return null;
     }
 }

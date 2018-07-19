@@ -1,5 +1,7 @@
 package com.lingyun.generics;
 
+import java.io.Serializable;
+
 public class Car extends AbstractAutomobile implements Cloneable{
     @Override
     public void run() {
@@ -7,7 +9,10 @@ public class Car extends AbstractAutomobile implements Cloneable{
     }
 
     @Override
-    public String doSomething() {
-        return "car is doing something";
+    public String doSomething(Serializable doing) {
+        return "car is running";
+    }
+    public String doSomething(String doing) {
+        return doSomething((Serializable)doing);
     }
 }
