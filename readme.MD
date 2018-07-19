@@ -304,7 +304,7 @@ public class Interval<Q extends Comparable,S> extends Pair<Q>{
  
  很神奇的是，书中认为的会编译报错的代码，在我这里却编译通过了。见我写的Pair类中的main方法。
  
- 但是作者的结论是正确的，确实Pair<Manager>和Pair<Employee>没有父子关系。见下图：
+ 但是作者的结论是正确的，确实Pair&lt;Manager&gt;和Pair&lt;Employee&gt;没有父子关系。下图可以证明：
  
  ![](https://github.com/YuxingXie/reflect/raw/master/source/2.png) 
  
