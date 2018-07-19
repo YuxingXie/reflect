@@ -223,7 +223,8 @@ public class DateInterval extends Pair<Date>{
 }
 ```
 
-Pair&lt;T&gt;中定义了public void setSecond(T second)方法，这里DateInterval中的public void setSecond(Date second)算重父类方法写吗？根据类型参数可以代替为任何类型的
+Pair&lt;T&gt;中定义了public void setSecond(T second)方法，这里DateInterval中的public void setSecond(Date second)算写重父类方法吗？根据类型参数可以代替为任何类型的
 泛型宗旨看，它应该是重写父类方法。因为这里，DateInterval继承了Pair&lt;T&gt;并把类型参数代替为Date类型。所以在DateInterval中，它父类Pair的类型参数就是Date，Pair中所有的
 T都被替换为了Date，所以父类中的public void setSecond(T second)替换为了public void setSecond(Date second)。所以DateInterval中的public void setSecond(Date second)
 是在重写父类方法。
+
