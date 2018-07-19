@@ -248,3 +248,9 @@ public void setSecond(Object second)中调用public void setSecond(Date second)�
 public Date getSecond()方法与Pair中的public Object getSecond()被称作具有协变的返回类型，是一种合法的重写。这个可以看看com.lingyun.generics.Car是如何重写
 com.lingyun.generics.AbstractAutomobile的doSomething方法的。注意，只有协变的返回类型而没有协变的参数类型。
 
+当类型参数既在返回类型又在方法参数时，就结合桥方法和协变返回类型。com.lingyun.generics.Car中的public String doSomething(String doing)方法就是模仿虚拟机产生的桥方法。
+
+#### 再次重申泛型的使用者和提供者身份
+
+
+
