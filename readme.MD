@@ -280,9 +280,24 @@ public class Interval<Q extends Comparable,S> extends Pair<Q>{
 
 ### 约束与局限性
 
+这里有些简单，有些很抽象，需要时间去理解。暂时有一些不理解的，边研究边去理解，等理解了再来描述。
 
  * 不能用基本类型实例化类型参数，因为擦除后Object不能引用基本数据类型。
  
  * 运行时类型查询只适用于原始类型，很好理解，因为虚拟机中根本没有泛型类型。
  
- * 不能创建参数化类型的数组,就是说可以Pair&lt;String&gt;[] table=new Pair[10];但是不可以Pair&lt;String&gt;[] table=new Pair&lt;String&gt;[10];这个没弄懂为什么。
+ * 不能创建参数化类型的数组,就是说可以Pair&lt;String&gt;[] table=new Pair[10];但是不可以Pair&lt;String&gt;[] table=new Pair&lt;String&gt;[10];这个还没弄懂。
+ 
+ * Varargs警告，出现在方法参数是数组的情况时，这和上一条产生的原因相似。
+ 
+ * 不能实例化类型变量，既T = new T();这种代码是非法的。
+ 
+ * 泛型类的静态上下文中类型变量无效，就是说不能有static T 的属性和方法。
+ 
+ * 不能抛出或捕获泛型类的实例，甚至泛型类不可扩展自Throwable。
+ 
+ * 擦除后的冲突。
+ 
+ ### 泛型类型的继承规则
+ 
+ 
