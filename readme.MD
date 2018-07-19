@@ -260,12 +260,21 @@ com.lingyun.generics.AbstractAutomobile的doSomething方法的。注意，只有
 ```java
 package com.lingyun.generics;
 
-public class Interval<T extends Comparable> extends Pair<T>{
-    public T getMax(){
+public class Interval<Q extends Comparable,S> extends Pair<Q>{
+    public Q getMax(){
         return getFirst().compareTo(getSecond())>0?getFirst():getSecond();
+    }
+    private S s;
+
+    public S getS() {
+        return s;
+    }
+
+    public void setS(S s) {
+        this.s = s;
     }
 }
 ```
 
-子类可以多类型限定，
+子类可以对父类的类型参数做类型限定，子类必须包含父类的泛型类型Q，子类可以增加一个泛型参数S。这些规则放到后面研究吧。
 
