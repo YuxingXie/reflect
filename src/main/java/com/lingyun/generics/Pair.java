@@ -1,5 +1,7 @@
 package com.lingyun.generics;
 
+import java.io.File;
+
 public class Pair<T> {
     private T first;
     private T second;
@@ -32,7 +34,9 @@ public class Pair<T> {
         Manager[] topHonchos=new Manager[4];
         Pair<Employee> result=ArrayAlg.minMax(topHonchos);
 //
-//        Pair<Manager> managerPair=new Pair<Manager>();
+        Pair<Manager> managerPair=new Pair<Manager>();
 //        result = managerPair; //error
+        Pair rawPair=managerPair;
+        rawPair.setFirst(new File(""));
     }
 }

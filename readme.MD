@@ -300,7 +300,6 @@ public class Interval<Q extends Comparable,S> extends Pair<Q>{
  
  ### 泛型类型的继承规则
  
- note:非弄懂不可。。。非弄懂不可。。。非弄懂不可。。。
  
  《Java核心技术 卷I》中，作者试图证明：无论S与T有什么关系，Pair&lt;S&gt;和Pair&lt;T&gt;没有说明关系。
  
@@ -311,6 +310,11 @@ public class Interval<Q extends Comparable,S> extends Pair<Q>{
  ![](https://github.com/YuxingXie/reflect/raw/master/source/2.png) 
  
  其实作者是想当然了，根据虚拟机悄悄修改我们的代码过程，Pair&lt;Employee&gt; result=ArrayAlg.minMax(topHonchos);这句代码调用时，topHonchos已被强制转换为了Employee[],所以代码是正确的。
+ 
+ 泛型类可以扩展或实现其它的泛型类，这个我已经在前面做过研究了，而且比书上的更具体。
+ 
+ ### 通配符类型
+ 
  
 
  
