@@ -226,5 +226,11 @@ public class DateInterval extends Pair<Date>{
 Pair&lt;T&gt;中定义了public void setSecond(T second)方法，这里DateInterval中的public void setSecond(Date second)算写重父类方法吗？根据类型参数可以代替为任何类型的
 泛型宗旨看，它应该是重写父类方法。因为这里，DateInterval继承了Pair&lt;T&gt;并把类型参数代替为Date类型。所以在DateInterval中，它父类Pair的类型参数就是Date，Pair中所有的
 T都被替换为了Date，所以父类中的public void setSecond(T second)替换为了public void setSecond(Date second)。所以DateInterval中的public void setSecond(Date second)
-是在重写父类方法。
+是在重写父类方法。这样想没毛病，也符合泛型的设计宗旨。我使用的IDE(Intellij Idea)也认为这个方法是从父类继承而来的。
 
+然而从类型擦除的角度看，却不是这么一回事。Pair&lt;T&gt;中的public void setSecond(T second)类型擦除后变成了public void setSecond(Object second),很显然这和DateInterval
+中的public void setSecond(Date second)是具有两个不同方法签名的重载方法，而不是重写父类方法。
+
+从泛型设计宗旨看，类型擦除引起的问题必须得到纠正。
+
+从之前的研究我们知道，编译器在我们使用泛型的地方，进行了强制类型转换
