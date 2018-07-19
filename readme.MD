@@ -280,10 +280,9 @@ public class Interval<Q extends Comparable,S> extends Pair<Q>{
 
 ### 约束与局限性
 
-这些细节书上写的较多，其实只要理解了泛型在虚拟机中的机制，这些都很好理解，就不详细解释了。
 
  * 不能用基本类型实例化类型参数，因为擦除后Object不能引用基本数据类型。
  
  * 运行时类型查询只适用于原始类型，很好理解，因为虚拟机中根本没有泛型类型。
  
- * 不能创建参数化类型的数组。
+ * 不能创建参数化类型的数组,就是说可以Pair&lt;String&gt;[] table=new Pair[10];但是不可以Pair&lt;String&gt;[] table=new Pair&lt;String&gt;[10];这个没弄懂为什么。

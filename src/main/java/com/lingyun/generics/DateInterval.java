@@ -15,5 +15,7 @@ public class DateInterval extends Pair<Date>{
     }
     public static void main(String[] args){
         Pair<String>[] table=new Pair[10];
+        table[0] =new Pair<String>();
+
     }
 }
