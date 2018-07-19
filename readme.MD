@@ -306,5 +306,5 @@ public class Interval<Q extends Comparable,S> extends Pair<Q>{
  
  但是作者的结论是正确的，确实Pair<Manager>和Pair<Employee>没有父子关系。见下图：
  
- ![](https://github.com/YuxingXie/reflect/raw/master/source/1.png) 
+ ![](https://github.com/YuxingXie/reflect/raw/master/source/2.png) 
  
