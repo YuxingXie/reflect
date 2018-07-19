@@ -222,3 +222,6 @@ public class DateInterval extends Pair<Date>{
     }
 }
 ```
+
+Pair&lt;T&gt;中定义了public void setSecond(T second)方法，这里DateInterval中的public void setSecond(Date second)算重父类方法写吗？根据类型参数可以代替为任何类型的
+泛型宗旨看，它应该是重写父类方法。
