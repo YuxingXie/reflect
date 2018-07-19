@@ -252,5 +252,20 @@ com.lingyun.generics.AbstractAutomobile的doSomething方法的。注意，只有
 
 #### 再次重申泛型的使用者和提供者身份
 
+我们知道了，泛型设计者是要设计一个类型参数可以被替换的通用型类，而泛型的使用者则在使用时把类型参数实例化为他想要使用的类型。那么何时才算"使用一个泛型类"呢？前面研究过，实例化
+一个泛型类，调用泛型方法都算使用。那么集成一个泛型类算什么？前面的DateInterval毫无疑问算是"使用泛型类"，因为它把类型参数实例化为Date类型。这时这个类不具备通用性，它的getSecond
+返回值以及setSecond方法参数都被具体化为Date类型了。假设我们要设计一个类Interval集成Pair且仍具备可以替换的类型参数怎么办？我们应该继续使用泛型类型T,
+见com.lingyun.generics.Interval：
 
+```java
+package com.lingyun.generics;
+
+public class Interval<T extends Comparable> extends Pair<T>{
+    public T getMax(){
+        return getFirst().compareTo(getSecond())>0?getFirst():getSecond();
+    }
+}
+```
+
+子类可以多类型限定，
 
