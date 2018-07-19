@@ -231,6 +231,14 @@ T都被替换为了Date，所以父类中的public void setSecond(T second)替�
 然而从类型擦除的角度看，却不是这么一回事。Pair&lt;T&gt;中的public void setSecond(T second)类型擦除后变成了public void setSecond(Object second),很显然这和DateInterval
 中的public void setSecond(Date second)是具有两个不同方法签名的重载方法，而不是重写父类方法。
 
-从泛型设计宗旨看，类型擦除引起的问题必须得到纠正。
+从泛型设计宗旨看，类型擦除引起的问题必须得到纠正。就是说，要让public void setSecond(Date second)成为public void setSecond(Object second)的子类，然而，该怎么做呢？
 
-从之前的研究我们知道，编译器在我们使用泛型的地方，进行了强制类型转换
+从之前的研究我们知道，编译器在我们使用泛型参数的地方，悄悄地进行了强制类型转换。在这里如果我们也采用强制类型转换这种方式，似乎应该是这样的：让编译器把DateInterval中的
+public void setSecond(Date second)方法悄悄变成public void setSecond(Object second)方法，以保证它是继承自父类，然后在方法体中第一句加上强制类型转换：
+```java
+    Date second_ =(Date) second;
+```
+然后把方法中用到second的地方都替换成second_。
+
+当然，这是不优雅的。实际上，编译器采用了桥方法。桥方法仍然悄悄生成public void setSecond(Object second)方法，同时也保留public void setSecond(Date second)，然后在
+public void setSecond(Object second)中调用public void setSecond(Date second)方法，调用的时候吧Object second强制转换为Date类型。

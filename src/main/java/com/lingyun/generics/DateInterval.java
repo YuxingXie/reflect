@@ -8,4 +8,10 @@ public class DateInterval extends Pair<Date>{
             super.setSecond(second);
         }
     }
+
+    @Override
+    public Date getSecond() {
+        return super.getSecond();
+    }
+
 }
