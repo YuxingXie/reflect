@@ -308,3 +308,7 @@ public class Interval<Q extends Comparable,S> extends Pair<Q>{
  
  ![](https://github.com/YuxingXie/reflect/raw/master/source/2.png) 
  
+ 其实作者是想当然了，根据虚拟机悄悄修改我们的代码过程，Pair&lt;Employee&gt; result=ArrayAlg.minMax(topHonchos);这句代码调用时，topHonchos已被强制转换为了Employee[],所以代码是正确的。
+ 
+ 
+ 
