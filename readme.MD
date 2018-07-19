@@ -315,6 +315,28 @@ public class Interval<Q extends Comparable,S> extends Pair<Q>{
  
  ### 通配符类型
  
+ 看看这个printBuddies方法：
+ ```java
+ package com.lingyun.generics;
  
-
+ public class Employee implements Comparable<Employee>{
+     //......other code......
+     //......other code......
+     //......other code......
+     //......other code......
+     //......other code......
+     
+    public static void printBuddies(Pair<Employee> p){
+        Employee first=p.getFirst();
+        Employee second=p.getSecond();
+        System.out.println(first.getName()+ " and "+second.getName());
+    }
+    
+    public static void main(String[] args){
+            Pair<Manager> managerPair=new Pair<>();
+            printBuddies(managerPair);//error
+        }
+}
+```
+我们调用时传入Pair&lt;Manager&gt;类型的参数时，代码是报错的，原因是Pair&lt;Manager&gt;和Pair&lt;Employee&gt;没有继承关系。
  
