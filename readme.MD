@@ -236,6 +236,7 @@ T都被替换为了Date，所以父类中的public void setSecond(T second)替�
 从之前的研究我们知道，编译器在我们使用泛型参数的地方，悄悄地进行了强制类型转换。在这里如果我们也采用强制类型转换这种方式，似乎应该是这样的：让编译器把DateInterval中的
 public void setSecond(Date second)方法悄悄变成public void setSecond(Object second)方法，以保证它是继承自父类，然后在方法体中第一句加上强制类型转换：
 ```java
+    //我认为虚拟机可能这么干了
     Date second_ =(Date) second;
 ```
 然后把方法中用到second的地方都替换成second_。
@@ -246,3 +247,4 @@ public void setSecond(Object second)中调用public void setSecond(Date second)�
 当虚拟机解决getter方法的泛型类型时，Pair中定义public T getSecond()被擦除变量类型后public Object getSecond(),DateInterval中的
 public Date getSecond()方法与Pair中的public Object getSecond()被称作具有协变的返回类型，是一种合法的重写。这个可以看看com.lingyun.generics.Car是如何重写
 com.lingyun.generics.AbstractAutomobile的doSomething方法的。注意，只有协变的返回类型而没有协变的参数类型。
+
