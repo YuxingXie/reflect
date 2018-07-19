@@ -12,6 +12,20 @@ public class ArrayAlg {
         }
         return smallest;
     }
+    public static<T  extends Comparable> Pair<T>minMax(T[] a){
+        if (a==null||a.length==0) return null;
+        Pair<T> pair =new Pair<T>();
+        T min=a[0];
+        T max =a[0];
+        for(T t:a){
+            if (t.compareTo(max)>0) max=t;
+            if (t.compareTo(min)<0) min=t;
+        }
+        pair.setFirst(min);
+        pair.setSecond(max);
+        return pair;
+    }
+
     public static void main(String[] args){
         String middle =ArrayAlg.<String>getMiddle("John","Q.","Public");
         String middle2 =ArrayAlg.getMiddle("John","Q.","Public");

@@ -290,7 +290,7 @@ public class Interval<Q extends Comparable,S> extends Pair<Q>{
  
  * Varargs警告，出现在方法参数是数组的情况时，这和上一条产生的原因相似。
  
- * 不能实例化类型变量，既T = new T();这种代码是非法的。
+ * 不能实例化类型变量，既T = new T();这种代码是非法的,但是Pair<T> pair =new Pair<T>();是合法的。
  
  * 泛型类的静态上下文中类型变量无效，就是说不能有static T 的属性和方法。
  
@@ -300,4 +300,11 @@ public class Interval<Q extends Comparable,S> extends Pair<Q>{
  
  ### 泛型类型的继承规则
  
+ note:非弄懂不可。。。非弄懂不可。。。非弄懂不可。。。
+ 
+ 很神奇的是，书中认为的会编译报错的代码，在我这里却编译通过了。见我写的Pair类中的main方法。
+ 
+ 但是作者的结论是正确的，确实Pair<Manager>和Pair<Employee>没有父子关系。见下图：
+ 
+ ![](https://github.com/YuxingXie/reflect/raw/master/source/1.png) 
  

@@ -27,4 +27,12 @@ public class Pair<T> {
     public void setSecond(T second) {
         this.second = second;
     }
+
+    public static void main(String[] args){
+        Manager[] topHonchos=new Manager[4];
+        Pair<Employee> result=ArrayAlg.minMax(topHonchos);
+//
+//        Pair<Manager> managerPair=new Pair<Manager>();
+//        result = managerPair; //error
+    }
 }
