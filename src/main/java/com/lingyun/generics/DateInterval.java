@@ -13,5 +13,7 @@ public class DateInterval extends Pair<Date>{
     public Date getSecond() {
         return super.getSecond();
     }
-
+    public static void main(String[] args){
+        Pair<String>[] table=new Pair[10];
+    }
 }
