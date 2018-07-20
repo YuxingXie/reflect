@@ -380,7 +380,7 @@ class Orange extends Fruit{}
  
  情况不对，编译错误。我们前面研究过，List&lt;Fruit&gt;和ArrayList&lt;Apple&gt;没有父子关系，所以会报错。
   
-我们确实需要这样一个容器，它可以让元素向上转型。com.lingyun.generics.Employee的public static void printBuddies(Pair&lt;Employee&gt; p)方法就是这种场景，
+我们确实需要这样一个容器(或方法)，它可以让元素向上转型。com.lingyun.generics.Employee的public static void printBuddies(Pair&lt;Employee&gt; p)方法就是这种场景，
 它希望方法参数是Pair&lt;Employee&gt;，并且实际上传入Pair&lt;Manager&gt;也应该要成立。
 
  
