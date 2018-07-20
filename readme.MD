@@ -383,4 +383,30 @@ class Orange extends Fruit{}
 我们确实需要这样一个容器(或方法)，它可以让元素向上转型。com.lingyun.generics.Employee的public static void printBuddies(Pair&lt;Employee&gt; p)方法就是这种场景，
 它希望方法参数是Pair&lt;Employee&gt;，并且实际上传入Pair&lt;Manager&gt;也应该要成立。
 
- 
+ 这时，书上告诉我要用通配符解决问题：
+ ```java
+package com.lingyun.generics;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GenericAndCovariance {
+    public static void main(String[] args){
+        List<? extends Fruit> flist= new ArrayList<Apple>();//有讲究
+//        flist.add(new Apple());//不是吧，这也报错，我能传什么进去？
+//        flist.add(new Fruit());//wrong
+//        flist.add(new Object());//啥都不行？
+        flist.add(null);//难道只能传null
+        Fruit f=flist.get(0);//correct
+    }
+}
+```
+
+当然，看上面的代码，事情没那么简单的。
+
+先看看这句：
+```java
+    List<? extends Fruit> flist= new ArrayList<Apple>();
+```
+实例化一个泛型类，就要把类型参数实例化为一个具体的类，所以通配符不能放在赋值语句的右边，右边一定是一个参数类型具体的类。就是说，通配符一定是放在赋值语句的左边。当然也可以放在方法的形参上，道理类似。
+
