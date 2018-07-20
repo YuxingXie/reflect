@@ -35,5 +35,6 @@ public class Employee implements Comparable<Employee>{
     public static void main(String[] args){
         Pair<Manager> managerPair=new Pair<>();
 //        printBuddies(managerPair);//error
+
     }
 }

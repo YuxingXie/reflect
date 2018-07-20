@@ -339,4 +339,47 @@ public class Interval<Q extends Comparable,S> extends Pair<Q>{
 }
 ```
 我们调用时传入Pair&lt;Manager&gt;类型的参数时，代码是报错的，原因是Pair&lt;Manager&gt;和Pair&lt;Employee&gt;没有继承关系。
+
+我们怎么建立Pair&lt;Manager&gt;和Pair&lt;Employee&gt;之间的关系呢？这时候通配符起作用了。
+
+我不打算用这个例子了，因为《Java编程思想》中对通配符的描述更好，所以我们换它的例子。
+```java
+package com.lingyun.generics;
+
+public class CovariantArrays {
+
+    public static void main(String[] args){
+        Fruit[] fruits= new Apple[10];
+        fruits[0] = new Apple();
+        fruits[1] = new Jonathan();
+        fruits[0] = new Fruit();
+        fruits[0] = new Orange();
+    }
+}
+
+class Fruit{}
+class Apple extends Fruit{}
+class Jonathan extends Apple{}
+class Orange extends Fruit{}
+```
+
+我省略了try-catch块，程序编译正确，运行的时候在fruits[0] = new Fruit();和fruits[0] = new Orange();时会抛出java.lang.ArrayStoreException异常。
+
+这个例子是想告诉我们，即便我们申明了一个Fruit[]，但它初始化为了一个Apple[10]，那么它就不是一个Fruit[]而是一个Apple[]。但这是一种运行时错误。编译器是通过的。
+
+要记住这一点，不要以为你声明了Fruit[]就可以认为数组里可以随心所欲放Fruit，因为初始化的时候决定了数组元素必须是Apple。这一点数组和类是不一样的,下面的代码就不会有问题：
+
+```java
+    Fruit fruit =new Apple();
+    fruit = new Orange();
+```
+
+好吧，我们不用数组，而使用容器类：
+
+ ![](https://github.com/YuxingXie/reflect/raw/master/source/2.png)
+ 
+ 情况不对，编译错误。
+  
+
+
  
