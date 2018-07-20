@@ -378,7 +378,7 @@ class Orange extends Fruit{}
 
  ![](https://github.com/YuxingXie/reflect/raw/master/source/2.png)
  
- 情况不对，编译错误。
+ 情况不对，编译错误。我们前面研究过，List&lt;Fruit&gt;和ArrayList&lt;Apple&gt;没有父子关系，所以会报错。
   
 
 
