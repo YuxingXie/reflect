@@ -425,8 +425,57 @@ List<? extends Fruit>不是任何一种参数类型的List，所以使用者不�
 
 更通俗一点说，编译器在我们的代码需要具体类的实例时，它要求一个? extends Fruit类型的类，实际上根本没有这种类。
 
-但是编译器却允许? extends Fruit作为引用类型(就是放在赋值语句左边的类型)存在，这是它代表的是Fruit类型。
+但是编译器却允许? extends Fruit作为引用类型(就是放在赋值语句左边的类型)存在，这时它代表的是Fruit类型。
 
 当然我们还可以更深挖，比如为什么是编译器而不是虚拟机。
 
+```
+
+现在看起来似乎通配符没什么用。书中举了一个例子，似乎也仅仅说明通配符只在向上转型时作为引用类型时有用。当然就这一个简单的作用也解决了反省类型不能向上转型的问题。就是说之前的经典问题：
+不能把ArrayList&lt;Apple&gt;赋值给引用类型List&lt;Fruit&gt;的问题。仅此而已。
+
+书中的例子(略做改动)：
+```java
+package com.lingyun.generics;
+
+import javax.xml.ws.Holder;
+
+public class GoodHolder<T> {
+    private T a;
+    public GoodHolder(T a){
+        this.a=a;
+    }
+
+    public T get() {
+        return a;
+    }
+
+    public void set(T a) {
+        this.a = a;
+    }
+    public static void main(String[] args){
+
+
+        GoodHolder<Apple> appleHolder=new GoodHolder<>(new Apple());
+
+        Apple d = appleHolder.get();
+
+        appleHolder.set(d);
+
+        //GoodHolder<Fruit> fruitGoodHolder=appleHolder;//cannot upcast
+        GoodHolder<? extends Fruit> fruitHolder=appleHolder;//通配符是这样用的
+
+        Fruit p=fruitHolder.get();
+
+        d=(Apple)fruitHolder.get();
+
+        try {
+            Orange c=(Orange)fruitHolder.get();
+        }catch (Exception e){
+            System.out.println(e);
+            System.out.println(fruitHolder.equals(appleHolder));
+            System.out.println(p.equals(d));
+        }
+    }
+}
 ```

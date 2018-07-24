@@ -1,5 +1,7 @@
 package com.lingyun.generics;
 
+import javax.xml.ws.Holder;
+
 public class GoodHolder<T> {
     private T a;
     public GoodHolder(T a){
@@ -28,5 +30,28 @@ public class GoodHolder<T> {
         Car car2=new Car();
 
         GoodHolder<AbstractAutomobile> carHolder2=new GoodHolder<>(car2);
+
+
+/***********************      通配符     ***********************/
+        GoodHolder<Apple> appleHolder=new GoodHolder<>(new Apple());
+
+        Apple d = appleHolder.get();
+
+        appleHolder.set(d);
+
+        //GoodHolder<Fruit> fruitGoodHolder=appleHolder;//cannot upcast
+        GoodHolder<? extends Fruit> fruitHolder=appleHolder;//通配符是这样用的
+
+        Fruit p=fruitHolder.get();
+
+        d=(Apple)fruitHolder.get();
+
+        try {
+            Orange c=(Orange)fruitHolder.get();
+        }catch (Exception e){
+            System.out.println(e);
+            System.out.println(fruitHolder.equals(appleHolder));
+            System.out.println(p.equals(d));
+        }
     }
 }
