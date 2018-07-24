@@ -418,3 +418,7 @@ Fruit f=flist.get(0);这一句是合法的。
 ```text
 List<? extends Fruit>可以合法地指向一个List<Orange>。一旦执行这种类型的向上转型，你就将丢失掉向其中传递任何对象的能力，甚至传递Object也不行。
 ```
+我理解为：
+```text
+List<? extends Fruit>不是任何一种参数类型的List，所以使用者不能将任何东西放进这个List。
+```
