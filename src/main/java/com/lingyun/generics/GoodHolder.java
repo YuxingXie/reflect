@@ -1,6 +1,8 @@
 package com.lingyun.generics;
 
 import javax.xml.ws.Holder;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GoodHolder<T> {
     private T a;
@@ -54,5 +56,9 @@ public class GoodHolder<T> {
             System.out.println(fruitHolder.equals(appleHolder));
             System.out.println(p.equals(d));
         }
+/***********************      逆变     ***********************/
+        List<? super Fruit> fruits=new ArrayList<>();
+        fruits.add(new Apple());
+        Object af=fruits.get(0);
     }
 }

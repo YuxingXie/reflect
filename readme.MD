@@ -423,9 +423,13 @@ List<? extends Fruit>可以合法地指向一个List<Orange>。一旦执行这�
 
 List<? extends Fruit>不是任何一种参数类型的List，所以使用者不能将调用任何方法中包含参数化类型的任何方法，但是可以调用返回值是参数化类型但参数中不包含参数化类型的的方法。
 
+我们看看这句代码：flist.add(new Apple());根据编译器翻译泛型代码所做的工作，实际上是要把new Apple()强制转换为? extends Fruit，当然不存在这样的类型。所以编译当然不会通过。
+
 但是编译器却允许? extends Fruit作为引用类型(就是放在赋值语句左边的类型)存在，这时它代表的是Fruit类型。
 
-当然我们还可以更深挖，比如为什么是编译器而不是虚拟机。
+用同样的道理解释似乎行不通，因为flist.get(0)也存在强制转换为? extends Fruit的问题，为什么Fruit f=flist.get(0)就合法呢？
+
+是不是可以认定，编译器对通配符类型代码的编译有不一样的规则呢？我暂且认定是的。
 
 ```
 
@@ -501,4 +505,9 @@ public class SuperTypeWildCards {
 }
 
 ```
-  
+
+先解释一下，? super Apple不是表示"Apple的基类类型"，而是表示"以Apple为基类的类型"。从这个意义上讲，它和? extends Apple似乎没什么不同。但从代码可以看出，它解决了我们之前提出的问题：
+不能调用参数包含类型参数的方法。现在，通过? super Apple作为参数形参，可以调用List的add(T)方法了。
+
+
+
