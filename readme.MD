@@ -535,8 +535,29 @@ public class SuperTypeWildCards {
 
 #### 无界通配符
 
-我们是带着前一小节的问题来研究这一小节的。我试图解决两个问题：
+我是带着前一小节的问题来研究这一小节的。我试图解决两个问题：
 
- * 怎么让usefulWriteTo能够接收一个List&lt;Apple&gt;
+ * 怎么让usefulWriteTo能够接收一个List&lt;Apple&gt;；
  
  * 怎么通过get方法获得的实例用Fruit引用。
+
+先不看书，直奔主题，我写一个无解通配符的类测试是否能达成的目的：
+
+```java
+package com.lingyun.generics;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MyUnbounderWildcards {
+    
+    public static void main(String[] args){
+        List<?> fruits= new ArrayList<Apple>();
+        //ruits.add(new Apple());//error
+        //Apple apple=fruits.get(0);//error
+    }
+}
+```
+
+现实是很残酷的，无界通配符不能解决我提出的任何一个问题，甚至还不如extends通配符和超类通配符，它们至少能解决一个问题。
+
