@@ -49,6 +49,7 @@ public class GoodHolder<T> {
         try {
             Orange c=(Orange)fruitHolder.get();
         }catch (Exception e){
+            //fruitHolder.set(new Apple());//不能这样用我感到非常遗憾
             System.out.println(e);
             System.out.println(fruitHolder.equals(appleHolder));
             System.out.println(p.equals(d));
