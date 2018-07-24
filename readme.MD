@@ -509,5 +509,34 @@ public class SuperTypeWildCards {
 先解释一下，? super Apple不是表示"Apple的基类类型"，而是表示"以Apple为基类的类型"。从这个意义上讲，它和? extends Apple似乎没什么不同。但从代码可以看出，它解决了我们之前提出的问题：
 不能调用参数包含类型参数的方法。现在，通过? super Apple作为参数形参，可以调用List的add(T)方法了。
 
+既然如此，那我觉得方法这样写才更有用：
 
+```java
 
+    public void usefulWriteTo(List<? super Fruit> fruits){
+        fruits.add(new Apple());
+        fruits.add(new Jonathan());
+        fruits.add(new Fruit());
+        Object s=fruits.get(0);
+    }
+    public static void main(String[] args){
+        SuperTypeWildCards a = new SuperTypeWildCards();
+        //List<? super  Fruit> fruits=new ArrayList<Apple>();
+        List<? super  Fruit> fruits=new ArrayList<Fruit>();
+        a.usefulWriteTo(fruits);
+    }
+```
+不过似乎问题解决得并不完美，首先，在main方法中使用usefulWriteTo时,我们的方法只能接受类型参数为Fruit的List，却不能接受Apple类型参数List；其次，之前一直使用正常的Fruit作为get方法的
+引用类型代码已经不能用了，只能用Object引用。这相当于引出了新问题。
+
+这个问题是否在下小节的《无界通配符》中解决呢？可以先带着这个疑问。
+
+另外书中的例子GenericReading类中使用? extend T的用法值得看一下，这里就不列出来了。
+
+#### 无界通配符
+
+我们是带着前一小节的问题来研究这一小节的。我试图解决两个问题：
+
+ * 怎么让usefulWriteTo能够接收一个List&lt;Apple&gt;
+ 
+ * 怎么通过get方法获得的实例用Fruit引用。
