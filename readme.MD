@@ -408,5 +408,13 @@ public class GenericAndCovariance {
 ```java
     List<? extends Fruit> flist= new ArrayList<Apple>();
 ```
+首先我们要明确一个概念，通配符是我们使用者使用一个泛型类时使用的技术，而不是定义一个泛型类使用的技术，我们不能定义一个带通配符的泛型类，但是好像通配符可以放在方法定义的形参中。
 实例化一个泛型类，就要把类型参数实例化为一个具体的类，所以通配符不能放在赋值语句的右边，右边一定是一个参数类型具体的类。就是说，通配符一定是放在赋值语句的左边。当然也可以放在方法的形参上，道理类似。
 
+现在言归正传，我们看到GenericAndCovariance的main方法中，我们实例化了一个通配符类型参数的List,然而调用add方法时，我们却不能传入除了null以外的任何类型的实例，Object也不行。只有
+Fruit f=flist.get(0);这一句是合法的。
+
+书上说：
+```text
+List<? extends Fruit>可以合法地指向一个List<Orange>。一旦执行这种类型的向上转型，你就将丢失掉向其中传递任何对象的能力，甚至传递Object也不行。
+```
