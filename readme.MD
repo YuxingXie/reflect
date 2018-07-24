@@ -541,7 +541,7 @@ public class SuperTypeWildCards {
  
  * 怎么通过get方法获得的实例用Fruit引用。
 
-先不看书，直奔主题，我写一个无解通配符的类测试是否能达成的目的：
+先不看书，直奔主题，我写一个无界通配符的类测试是否能达成的目的：
 
 ```java
 package com.lingyun.generics;
@@ -560,4 +560,9 @@ public class MyUnbounderWildcards {
 ```
 
 现实是很残酷的，无界通配符不能解决我提出的任何一个问题，甚至还不如extends通配符和超类通配符，它们至少能解决一个问题。
+
+书中说：List实际上表示"持有任何Object类型的原生List",而List&lt;?&gt;表示"具有某种特定类型的非原生List，只是我们不知道那种类型是什么"。
+
+
+
 
