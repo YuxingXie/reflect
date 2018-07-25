@@ -608,3 +608,5 @@ public class MyWildcards {
     Apple apple =addAndGetFirst(apples,new Apple());
     
 这其中似乎隐藏了一些玄机，在下一节的《捕获转换》看看是否能够解开这个玄机。
+
+#### 捕获转换
