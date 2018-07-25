@@ -553,7 +553,7 @@ public class MyUnbounderWildcards {
     
     public static void main(String[] args){
         List<?> fruits= new ArrayList<Apple>();
-        //ruits.add(new Apple());//error
+        //fruits.add(new Apple());//error
         //Apple apple=fruits.get(0);//error
     }
 }
@@ -561,8 +561,50 @@ public class MyUnbounderWildcards {
 
 现实是很残酷的，无界通配符不能解决我提出的任何一个问题，甚至还不如extends通配符和超类通配符，它们至少能解决一个问题。
 
-书中说：List实际上表示"持有任何Object类型的原生List",而List&lt;?&gt;表示"具有某种特定类型的非原生List，只是我们不知道那种类型是什么"。
+List实际上表示"持有任何Object类型的原生List",而List&lt;?&gt;表示"具有某种特定类型的非原生List，只是我们不知道那种类型是什么"。------《Java编程思想》
 
+List和List&lt;?&gt;在表现上几乎无差异，仅仅是编译器的警告不一样。
 
+在各种通配符的用法上，根据之前所学：
 
+* 如果我们要使用参数列表中带类型参数的方法，就要用超类型通配符；
+* 如果我们要使用引用类型为类型参数，就要使用extends通配符；
 
+然而如果我们同时要使用参数列表中带类型参数的方法，也要使用类型参数为引用类型，应该怎么办呢？则需要使用超类型通配符并使用强制类型转换。
+
+```java
+package com.lingyun.generics;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MyWildcards {
+
+    public static void main(String[] args){
+
+        List<? super Fruit> apples=new ArrayList<Fruit>();
+        Fruit apple =addAndGetFirst(apples,new Apple());
+    }
+    public static<T>  T addAndGetFirst(List<? super T> tlist,T t){
+        tlist.add(t);
+//        return tlist.get(0);
+        return (T)tlist.get(0);
+    }
+
+}
+```
+因为使用了超类型通配符，程序损失了可协变的参数，方法必须传入List&lg;Fruit&gt;而不能传入List&lg;Apple&gt;。既要保持可协变参数，又要使用参数列表中带类型参数的方法，在通配符的使用前提下
+是无法办到的，这个大家自己思考一下。因为使用超类型通配符，当我们使用引用类型为类型参数的类型的方法时，编译器会捕获(关于捕获稍后会研究)一个超类型通配符类型，举例，上面代码中的tlist.get(0)
+编译器捕获了一个? super T类型，如果我们要返回类型参数的类型(即T类型)，我们可以进行强制类型转换。
+
+为了程序的可协变参数(泛型类型的向上引用)，Java引入了extends通配符，然而它却带来了恶果，不能调用方法中包含类型参数类型的方法。或者依场景使用各种通配符才是最好的选择吧。
+
+上例MyWildcards中，
+
+    Fruit apple =addAndGetFirst(apples,new Apple());
+    
+其实可以改为
+
+    Apple apple =addAndGetFirst(apples,new Apple());
+    
+这其中似乎隐藏了一些玄机，在下一节的《捕获转换》看看是否能够解开这个玄机。

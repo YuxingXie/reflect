@@ -9,9 +9,13 @@ public class MyUnbounderWildcards {
         List<?> fruits= new ArrayList<Apple>();
         //ruits.add(new Apple());//error
         //Apple apple=fruits.get(0);//error
-        Fruit apple =getFirst(new ArrayList<Apple>());
+        List<? super Fruit> apples=new ArrayList<>();
+        Fruit apple =addAndGetFirst(apples,new Apple());
     }
-    public static<T>  T getFirst(List<? extends T> tlist){
-        return tlist.get(0);
+    public static<T>  T addAndGetFirst(List<? super T> tlist,T t){
+        tlist.add(t);
+//        return tlist.get(0);
+        return (T)tlist.get(0);
     }
+
 }
