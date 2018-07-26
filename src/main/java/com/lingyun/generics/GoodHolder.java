@@ -6,6 +6,10 @@ import java.util.List;
 
 public class GoodHolder<T> {
     private T a;
+
+    public GoodHolder() {
+    }
+
     public GoodHolder(T a){
         this.a=a;
     }

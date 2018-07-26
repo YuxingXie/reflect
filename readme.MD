@@ -610,3 +610,41 @@ public class MyWildcards {
 这其中似乎隐藏了一些玄机，在下一节的《捕获转换》看看是否能够解开这个玄机。
 
 #### 捕获转换
+
+开始抄书(Java编程思想,当然也不是100%照抄，示例程序小小改动)：
+
+有一种情况特别需要使用&lt;?&gt;而不是原生类型。如果向一个使用&lt;?&gt;的方法传递原生类型，那么对编译器来说，可能会推断出实际的类型参数，使得这个方法可以回转并调用另一个使用这个确切类型的方法。
+下面的示例演示了这种技术，它被称为<i>捕获转换</i>。因为未指定的通配符类型被捕获，并被转换为确切类型。这里，有关警告的注释只有在@SuppressWarnings注解被移除之后才能起作用：
+```java
+package com.lingyun.generics;
+
+public class CaptureConversion {
+    static <T> void f1(GoodHolder<T> holder){
+        T t=holder.get();
+        System.out.println(t.getClass().getSimpleName());
+    }
+
+    static void f2(GoodHolder<?> holder){
+        f1(holder);//call with captured type
+    }
+    @SuppressWarnings("unchecked")
+    public static void main(String[] args){
+        GoodHolder raw = new GoodHolder<Integer>(1);
+        f1(raw);//Produces warnings
+        f2(raw);//No warnings
+        GoodHolder rawBasic=new GoodHolder();
+        rawBasic.set(new Apple());//Warning
+        f2(rawBasic);//No warnings
+        //Upcast to GoodHolder<?>,still figures it out:
+        GoodHolder<?> wildcarded=new GoodHolder<Double>(1.0);
+        f2(wildcarded);
+    }
+}
+/*Output:
+Integer
+Integer
+Apple
+Double
+ */
+```
+抄完收工。。。。。。。。。
