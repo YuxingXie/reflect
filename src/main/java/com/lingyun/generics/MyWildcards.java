@@ -8,7 +8,7 @@ public class MyWildcards {
     public static void main(String[] args){
 
         List<? super Fruit> apples=new ArrayList<Fruit>();
-//        Fruit apple =addAndGetFirst(apples,new Apple());
+        //Fruit apple =addAndGetFirst(apples,new Apple());
         Apple apple =addAndGetFirst(apples,new Apple());
         System.out.println(apple);
 
