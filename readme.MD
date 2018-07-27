@@ -2,6 +2,10 @@
                 
 note:补一下基础，并深入研究一下，特别是泛型。反射主要研究和泛型相关的内容。参考书籍：《Java编程思想》，《Java核心技术卷一》
 
+可能存在谬误，欢迎大家指正。
+
+如果您觉得有一定价值，欢迎转载，请注明出处。
+
 ## 泛型
 
     note:泛型使用是一件简单的事情，而如何设计泛型类则是有点难度的。本节重点也在学习如何设计泛型类。
@@ -627,24 +631,38 @@ public class CaptureConversion {
     static void f2(GoodHolder<?> holder){
         f1(holder);//call with captured type
     }
+    static void f3(GoodHolder holder){
+        f1(holder);
+    }
     @SuppressWarnings("unchecked")
     public static void main(String[] args){
         GoodHolder raw = new GoodHolder<Integer>(1);
         f1(raw);//Produces warnings
         f2(raw);//No warnings
+        f3(raw);
         GoodHolder rawBasic=new GoodHolder();
         rawBasic.set(new Apple());//Warning
         f2(rawBasic);//No warnings
+        f3(rawBasic);
         //Upcast to GoodHolder<?>,still figures it out:
         GoodHolder<?> wildcarded=new GoodHolder<Double>(1.0);
         f2(wildcarded);
+        f3(wildcarded);
     }
 }
 /*Output:
 Integer
 Integer
+Integer
 Apple
+Apple
+Double
 Double
  */
 ```
 抄完收工。。。。。。。。。
+
+根据泛型类和泛型方法的定义，f1是一个泛型方法，f2和f3不是泛型方法，f2使用了泛型通配符。在这里再强调一下泛型类(或方法)的设计者与使用者，很明显通配符属于泛型类(或方法)的使用范畴。
+
+关于这个例子，f3是我加上去的。作者认为，main方法中调用f2的时候，类型参数被捕获了，或许是吧，但这个例子其实无法证明。首先t.getClass()获取的是类的实际类型，所以打印永远是正确的，无论
+有没有捕获。要证明是否捕获，其实要通过方法的返回类型来判断(这里的逻辑有点跳跃，但我会稍后解释)。方法f3佐证了我的观点。
