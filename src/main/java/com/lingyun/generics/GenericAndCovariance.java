@@ -11,5 +11,6 @@ public class GenericAndCovariance {
 //        flist.add(new Object());//啥都不行？
         flist.add(null);//难道只能传null
         Fruit f=flist.get(0);//correct
+
     }
 }

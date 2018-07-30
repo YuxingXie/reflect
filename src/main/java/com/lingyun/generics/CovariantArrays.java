@@ -14,7 +14,11 @@ public class CovariantArrays {
     }
 }
 
-class Fruit{}
+class Fruit{
+    public String getName(){
+        return "I am fruit";
+    }
+}
 class Apple extends Fruit{}
 class Jonathan extends Apple{}
 class Orange extends Fruit{}
